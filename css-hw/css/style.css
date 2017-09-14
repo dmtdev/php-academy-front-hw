@@ -86,7 +86,7 @@ q {
     font-weight: bold;
     font-style: italic;
 }
-q.another-quoters{
+q.another-quotes{
     quotes: "\201c" "\201d";
     color: black;
 }
