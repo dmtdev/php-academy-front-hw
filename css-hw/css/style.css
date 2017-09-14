@@ -14,7 +14,6 @@ header {
     background-color: #013300;
     border-radius: 15px;
     margin-bottom: 20px;
-
 }
 
 main {
@@ -81,6 +80,11 @@ p.bold-center {
 p.spacing {
     letter-spacing: 2px;
 }
+
+p.padding{
+    line-height: 2.0;
+}
+
 
 q {
     color: #fc0000;
