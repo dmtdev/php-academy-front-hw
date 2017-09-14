@@ -1,39 +1,45 @@
-body{
+body {
     background: #018901 url("../img/pattern.png");
     font-family: Verdana, serif;
 }
 
-header{
+header, main, footer {
+    width: 800px;
+}
+
+header {
     border: 2px solid white;
     text-align: center;
     color: white;
-    width: 800px;
     background-color: #013300;
     border-radius: 15px;
     margin-bottom: 20px;
 }
 
-main{
+main {
     background-color: white;
     border-radius: 15px;
-    width: 800px;
 }
 
-footer{
+footer {
     border-top: 2px dotted #dc1102;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     background-color: #013300;
-    vertical-align: bottom;
+    /*vertical-align: bottom;*/
     color: white;
-    width: 800px;
 }
 
-h2{
+h1 {
+    font-weight: 100;
+    padding-top: -100px;
+}
+
+h2 {
     text-align: center;
 }
 
-img{
+img {
     background-color: #88ff89;
     border: 2px solid green;
     border-radius: 75px;
@@ -41,13 +47,46 @@ img{
     height: 150px;
 }
 
-.manager{
+.manager {
     text-align: center;
     color: #0000ff;
     font-weight: bold;
     width: 150px;
-    float: left;
-    padding: 10px;
+    display: inline-block;
 
+}
 
+cite {
+    color: #0000ff;
+}
+
+p.text-blockquote {
+    background-color: #88ff89;
+    text-align: justify;
+    /*margin-left: 50px;*/
+    /*margin-right: 50px;*/
+}
+
+blockquote.top-blockquote {
+    text-align: right;
+    font-size: 12px;
+}
+
+p.bold-center {
+    text-align: center;
+    font-weight: bold;
+}
+
+p.spacing {
+    letter-spacing: 2px;
+}
+
+q {
+    color: #fc0000;
+    font-weight: bold;
+    font-style: italic;
+}
+q.another-quoters{
+    quotes: "\201c" "\201d";
+    color: black;
 }
