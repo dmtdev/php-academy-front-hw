@@ -1,0 +1,33 @@
+body{
+    background: #018901 url("../img/pattern.png");
+    font-family: Verdana, serif;
+}
+
+header{
+    border: 2px solid white;
+    text-align: center;
+    color: white;
+    width: 800px;
+    background-color: #013300;
+    border-radius: 15px;
+}
+
+main{
+    background-color: white;
+    border-radius: 15px;
+    width: 800px;
+}
+
+footer{
+    border-top: 2px dotted #dc1102;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: #013300;
+    vertical-align: bottom;
+    color: white;
+    width: 800px;
+}
+
+h2{
+    text-align: center;
+}
