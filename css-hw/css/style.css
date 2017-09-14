@@ -57,6 +57,7 @@ img {
 
 cite {
     color: #0000ff;
+    font-style: inherit;
 }
 
 p.text-blockquote {
