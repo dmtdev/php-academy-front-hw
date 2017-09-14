@@ -32,3 +32,22 @@ footer{
 h2{
     text-align: center;
 }
+
+img{
+    background-color: #88ff89;
+    border: 2px solid green;
+    border-radius: 75px;
+    width: 150px;
+    height: 150px;
+}
+
+.manager{
+    text-align: center;
+    color: #0000ff;
+    font-weight: bold;
+    width: 150px;
+    float: left;
+    padding: 10px;
+
+
+}
