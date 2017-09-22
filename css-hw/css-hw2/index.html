@@ -14,11 +14,13 @@
 
     input:checked + span::before {
         content: "Я отмечен";
+        visibility: visible;
         color: #000;
     }
 
     input:checked + span {
-        color: white;
+        visibility: hidden;
+        color: #FFF;
     }
 
     span {
@@ -30,6 +32,14 @@
         left: 130px;
         z-index: 1;
     }
+
+    /*input[type="checkbox"]:checked + span {*/
+        /*visibility: hidden;*/
+    /*}*/
+    /*input[type="checkbox"]:checked + span::before {*/
+        /*visibility: visible;*/
+        /*content: 'Я отмечен';*/
+    /*}*/
 </style>
 <br><br>
 
@@ -194,10 +204,8 @@
         background: linear-gradient(135deg, #000 0%, #F00 100%);
     }
     div:hover {
-        opacity: .01;
         background: #F00;
         transition: all 1000ms;
-        transition-property: opacity;
     }
 </style>
 </body>
