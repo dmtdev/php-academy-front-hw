@@ -27,10 +27,15 @@
         550, 540, 3200, 1570, 250];
 
     function sortSalaries(salaryList) {
-        var salaryListCopy = salaryList.slice();
-        // ...
-        salaryListCopy.sort();
-        // ...
+        var salaryListCopy = new Array();
+        for (var i = 0; i < salaryList.length; i++) {
+            if (salaryListCopy.length > 0) {
+
+            }
+            else {
+                salaryListCopy.push(salaryList[0]);
+            }
+        }
         return salaryListCopy;
     }
 
@@ -76,6 +81,7 @@
         [103],
         [111]
     ];
+
     function balance(actions) {
         var itemsIn = 0;
         var itemsOut = 0;
@@ -85,6 +91,7 @@
             'Отправлено: ' + itemsOut + '\n' +
             'Товары на складе: ' + itemsAvailable);
     }
+
     balance(transactions);
 </script>
 </html>
