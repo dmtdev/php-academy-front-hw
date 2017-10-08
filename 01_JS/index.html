@@ -74,12 +74,12 @@
     }
 
     console.log('Сумма чисел от 1 до ' + n + ' равна: ' + sumRecursive(n));
-    //7
+    //7 входящим данным доверяем..
     var startHour = 6, endHour = 24;
     var countEnergyCost = function (start, end) {
         var amount = 0;
-        if (start >= 23 || start <= 7) {
-
+        for (start; start < end; start++) {
+            amount += (start < 7 && start > 23 ? 2.5 * 1.68 : 2.5 * 1.68 / 2);
         }
         return amount;
     };
