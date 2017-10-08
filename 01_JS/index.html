@@ -35,9 +35,47 @@
     //3
     var sum2 = 0;
     for (var i = 1; i < 31; i++) {
-
+        if (i % 2 == 0) {
+            continue;
+        }
+        else if (i % 3 == 0) {
+            sum2 += i;
+        }
     }
     console.log(sum2);
-    //3
+    //4
+    var counter = 1;
+    do {
+        if (counter % 4 == 0) {
+            console.log(counter);
+        }
+        counter++;
+        if (counter > 30) {
+            break;
+        }
+    } while (true);
+    //5
+    var a = 10.22, b = 15;
+    var mediate = new Function("a", "b", "console.log((a+b/2))");
+
+    mediate(a, b);
+    //6
+    var n = 10.5;
+    var result = 0;
+
+//    function sumRecursive(n) {
+//        result += 1;
+//        while (result < n) {
+//            sumRecursive(n);
+//            return result;
+//        }
+//    };
+    function sumRecursive(n){
+        return
+    }
+
+
+
+    console.log('Сумма чисел от 1 до ' + n + ' равна: ' + sumRecursive(n));
 </script>
 </html>
