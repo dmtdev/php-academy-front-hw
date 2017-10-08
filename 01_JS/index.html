@@ -10,12 +10,12 @@
 <script>
     //1
     var day = 3; // пн - 0, вт - 1, ... вс - 6
-    var hour = 22;
-    var minute = 35;
+    var hour = 13;
+    var minute = 29;
     var state = '';
     if (day == 6 || hour < 8 || hour > 19) {
         state = "закрыт";
-    } else if ((hour == 13 || hour == 14) && (minute < 31)) {
+    } else if ((hour == 13 && minute > 31) || (hour == 14 && minute < 31)) {
         state = "перерыв";
     }
     else {
@@ -60,7 +60,7 @@
 
     mediate(a, b);
     //6
-    var n = -250.8;
+    var n = 250.8;
     //    var result = 0;
     //    function sumRecursive(n) {
     //        result += 1;
@@ -73,7 +73,18 @@
         return (n > 1) ? n + sumRecursive(n - 1) : n;
     }
 
-
     console.log('Сумма чисел от 1 до ' + n + ' равна: ' + sumRecursive(n));
+    //7
+    var startHour = 6, endHour = 24;
+    var countEnergyCost = function (start, end) {
+        var amount = 0;
+        if (start >= 23 || start <= 7) {
+
+        }
+        return amount;
+    };
+    console.log('В период с ' + startHour + ' до ' + endHour + ' часов ' +
+        'потреблено энергии на  ' +
+        countEnergyCost(startHour, endHour) + ' грн. ');
 </script>
 </html>
