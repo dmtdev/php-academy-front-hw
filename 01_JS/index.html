@@ -60,20 +60,18 @@
 
     mediate(a, b);
     //6
-    var n = 10.5;
-    var result = 0;
-
-//    function sumRecursive(n) {
-//        result += 1;
-//        while (result < n) {
-//            sumRecursive(n);
-//            return result;
-//        }
-//    };
-    function sumRecursive(n){
-        return
+    var n = -250.8;
+    //    var result = 0;
+    //    function sumRecursive(n) {
+    //        result += 1;
+    //        while (result < n) {
+    //            sumRecursive(n);
+    //            return result;
+    //        }
+    //    };
+    function sumRecursive(n) {
+        return (n > 1) ? n + sumRecursive(n - 1) : n;
     }
-
 
 
     console.log('Сумма чисел от 1 до ' + n + ' равна: ' + sumRecursive(n));
