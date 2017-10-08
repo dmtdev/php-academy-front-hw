@@ -11,9 +11,80 @@
     //1
     //2
     var unreversed = [1, 2, 4, 8, 16, 32];
+
     function reverse(elements) {
+        var reversed = [];
+        elements.forEach(function (element) {
+            reversed.unshift(element);
+        });
+        return reversed;
+    }
+
+    console.log(reverse(unreversed));
+
+    //3
+    var salaries = [3100, 890, 1120, 740, 2100,
+        550, 540, 3200, 1570, 250];
+
+    function sortSalaries(salaryList) {
+        var salaryListCopy = salaryList.slice();
+        // ...
+        salaryListCopy.sort();
+        // ...
+        return salaryListCopy;
+    }
+
+    console.log(sortSalaries(salaries));
+    //4
+    var mayBeSquares = [1, 2, 3, 4, 8, 9, 15, 16,
+        34, 36, 38, 24, 25, 26];
+
+    function extractSquares(nums) {
         // ...
     }
-    console.log(reverse(unreversed));
+
+    console.log(extractSquares(mayBeSquares));
+    //5
+    var mayBeSquares = [1, 2, 3, 4, 8, 9, 15, 16,
+        34, 36, 38, 24, 25, 26];
+
+    function extractSquares(nums) {
+        // ...
+    }
+
+    console.log(extractSquares(mayBeSquares));
+    //6
+    var teamMates = ['Mike', 'Peter', 'Alex', 'Sonya',
+        'Mike', 'Mary', 'Like', 'Alex', 'Abraham', 'Mary'];
+
+    function unique(elements) {
+        // ...
+    }
+
+    console.log(unique(teamMates));
+
+    //7
+    var transactions = [
+        [101, 102, 103], // поступление
+        [], // отправка
+        [104, 105, 106], // поступление и т.д.
+        [103], // отправка и т.д.
+        [107, 108],
+        [105, 106],
+        [109, 110, 111, 112],
+        [108, 110],
+        [103],
+        [111]
+    ];
+    function balance(actions) {
+        var itemsIn = 0;
+        var itemsOut = 0;
+        var itemsAvailable = [];
+        // ...
+        console.log('Пришло: ' + itemsIn + '\n' +
+            'Отправлено: ' + itemsOut + '\n' +
+            'Товары на складе: ' + itemsAvailable);
+    }
+    balance(transactions);
 </script>
 </html>
