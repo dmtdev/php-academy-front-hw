@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS 01</title>
+</head>
+<body>
+
+</body>
+<script>
+    //1
+    var day = 3; // пн - 0, вт - 1, ... вс - 6
+    var hour = 22;
+    var minute = 35;
+    var state = '';
+    if (day == 6 || hour < 8 || hour > 19) {
+        state = "закрыт";
+    } else if ((hour == 13 || hour == 14) && (minute < 31)) {
+        state = "перерыв";
+    }
+    else {
+        state = "открыт"
+    }
+    console.log('В ' + hour + ':' + minute + ' ' +
+        (day + 1) + 'го дня недели статус магазина: ' +
+        state);
+    //2
+    var sum = 0;
+    var i = 1;
+    while (i < 21) {
+        i % 3 ? sum += i : sum;
+        i++;
+    }
+    console.log(sum);
+    //3
+    var sum2 = 0;
+    for (var i = 1; i < 31; i++) {
+
+    }
+    console.log(sum2);
+    //3
+</script>
+</html>
