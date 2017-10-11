@@ -78,6 +78,9 @@
     var startHour = 6, endHour = 24;
     var countEnergyCost = function (start, end) {
         var amount = 0;
+        if (start >= end) {
+            return amount;
+        }
         for (start; start < end; start++) {
             amount += (start < 7 && start > 23 ? 2.5 * 1.68 : 2.5 * 1.68 / 2);
         }
