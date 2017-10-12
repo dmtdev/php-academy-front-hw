@@ -42,15 +42,12 @@
     console.log(sortSalaries(salaries));
 
     //4
-    function sortSalaries2(salaryList) {
-        var result = salaries.reduce(function (pValue, cValue) {
-            if (cValue < 1000 && cValue > pValue) {
-                return cValue;
-            }
-            return pValue;
-        }, 0);
-        return result;
-    }
+    var result = salaries.reduce(function (pValue, cValue) {
+        if (cValue < 1000 && cValue > pValue) {
+            return cValue;
+        }
+        return pValue;
+    }, 0);
     console.log(result);
 
     //5
