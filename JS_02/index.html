@@ -27,43 +27,67 @@
         550, 540, 3200, 1570, 250];
 
     function sortSalaries(salaryList) {
-        var salaryListCopy = new Array();
-        for (var i = 0; i < salaryList.length; i++) {
-            if (salaryListCopy.length > 0) {
-
-            }
-            else {
-                salaryListCopy.push(salaryList[0]);
-            }
+        var salaryListCopy = salaryList.slice();
+        for (var i = 0; i < salaryListCopy.length; i++) {
+            salaryListCopy[i] = salaryListCopy[i].toString(2);
         }
+        salaryListCopy.sort();
+        for (var i = 0; i < salaryListCopy.length; i++) {
+            salaryListCopy[i] = parseInt(salaryListCopy[i], 2);
+        }
+        //console.log(salaryListCopy);
         return salaryListCopy;
     }
 
     console.log(sortSalaries(salaries));
+
     //4
-    var mayBeSquares = [1, 2, 3, 4, 8, 9, 15, 16,
-        34, 36, 38, 24, 25, 26];
-
-    function extractSquares(nums) {
-        // ...
+    function sortSalaries2(salaryList) {
+        var result = salaries.reduce(function (pValue, cValue) {
+            if (cValue < 1000 && cValue > pValue) {
+                return cValue;
+            }
+            return pValue;
+        }, 0);
+        return result;
     }
+    console.log(result);
 
-    console.log(extractSquares(mayBeSquares));
     //5
     var mayBeSquares = [1, 2, 3, 4, 8, 9, 15, 16,
         34, 36, 38, 24, 25, 26];
 
     function extractSquares(nums) {
-        // ...
+
+        var resultInArray = [];
+        var resultForAll = [];
+        for (var i = 0; i < nums.length; i++) {
+
+            if (nums.indexOf(Math.pow(nums[i], 0.5)) != -1) {
+                resultInArray.push(nums[i]);
+            }
+            if (Number.isInteger(Math.pow(nums[i], 0.5))) {
+                resultForAll.push(nums[i]);
+            }
+        }
+        return 'resultInArray: ' + resultInArray + '\n' +
+            'resultForAll: ' + resultForAll;
     }
 
     console.log(extractSquares(mayBeSquares));
+
     //6
     var teamMates = ['Mike', 'Peter', 'Alex', 'Sonya',
         'Mike', 'Mary', 'Like', 'Alex', 'Abraham', 'Mary'];
 
     function unique(elements) {
-        // ...
+        var unique = [];
+        for (var i = 0; i < elements.length; i++) {
+            if (unique.indexOf(elements[i]) == -1) {
+                unique.push(elements[i]);
+            }
+        }
+        return unique;
     }
 
     console.log(unique(teamMates));
@@ -86,12 +110,28 @@
         var itemsIn = 0;
         var itemsOut = 0;
         var itemsAvailable = [];
-        // ...
+        for (var i = 0; i < actions.length; i++) {
+            for (var j = 0; j < actions[i].length; j++) {
+                if (i % 2 == 0) {
+                    itemsIn++;
+                    if (itemsAvailable.indexOf(actions[i][j]) == -1) {
+                        itemsAvailable.push(actions[i][j]);
+                    }
+                } else {
+                    itemsOut++;
+                    delete(itemsAvailable[itemsAvailable.indexOf(transactions[i][j])]);
+                }
+            }
+        }
+        itemsAvailable = itemsAvailable.filter(function (elem) {
+            return elem;
+        });
         console.log('Пришло: ' + itemsIn + '\n' +
             'Отправлено: ' + itemsOut + '\n' +
             'Товары на складе: ' + itemsAvailable);
     }
 
     balance(transactions);
+
 </script>
 </html>
