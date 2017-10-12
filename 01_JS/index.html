@@ -13,7 +13,7 @@
     var hour = 13;
     var minute = 29;
     var state = '';
-    if (day == 6 || hour < 8 || hour > 19) {
+    if (day == 6 || hour < 8 || hour >= 19) {
         state = "закрыт";
     } else if ((hour == 13 && minute > 31) || (hour == 14 && minute < 31)) {
         state = "перерыв";
@@ -28,7 +28,8 @@
     var sum = 0;
     var i = 1;
     while (i < 21) {
-        i % 3 ? sum += i : sum;
+
+        i % 3 == 0 ? sum += i : sum ;
         i++;
     }
     console.log(sum);
@@ -82,7 +83,7 @@
             return amount;
         }
         for (start; start < end; start++) {
-            amount += (start < 7 && start > 23 ? 2.5 * 1.68 : 2.5 * 1.68 / 2);
+            amount += (start < 7 && start > 23 ? 2.5 * 1.68 / 2 : 2.5 * 1.68);
         }
         return amount;
     };
