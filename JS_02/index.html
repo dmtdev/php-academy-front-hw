@@ -29,11 +29,11 @@
     function sortSalaries(salaryList) {
         var salaryListCopy = salaryList.slice();
         for (var i = 0; i < salaryListCopy.length; i++) {
-            salaryListCopy[i] = salaryListCopy[i].toString(16);
+            salaryListCopy[i] = salaryListCopy[i] / 1000;
         }
         salaryListCopy.sort();
         for (var i = 0; i < salaryListCopy.length; i++) {
-            salaryListCopy[i] = parseInt(salaryListCopy[i], 32);
+            salaryListCopy[i] = salaryListCopy[i] * 1000;
         }
         return salaryListCopy;
     }
@@ -49,25 +49,19 @@
     }, 0);
     console.log(result);
 
+
     //5
     var mayBeSquares = [1, 2, 3, 4, 8, 9, 15, 16,
         34, 36, 38, 24, 25, 26];
 
     function extractSquares(nums) {
-
-        var resultInArray = [];
-        var resultForAll = [];
+        var result = [];
         for (var i = 0; i < nums.length; i++) {
-
-            if (nums.indexOf(Math.pow(nums[i], 0.5)) != -1) {
-                resultInArray.push(nums[i]);
-            }
             if (Number.isInteger(Math.pow(nums[i], 0.5))) {
-                resultForAll.push(nums[i]);
+                result.push(nums[i]);
             }
         }
-        return 'resultInArray: ' + resultInArray + '\n' +
-            'resultForAll: ' + resultForAll;
+        return result;
     }
 
     console.log(extractSquares(mayBeSquares));
@@ -110,21 +104,23 @@
             for (var j = 0; j < actions[i].length; j++) {
                 if (i % 2 == 0) {
                     itemsIn++;
-                    if (itemsAvailable.indexOf(actions[i][j]) == -1) {
-                        itemsAvailable.push(actions[i][j]);
-                    }
+                    //if (itemsAvailable.indexOf(actions[i][j]) == -1) {
+                    itemsAvailable.push(actions[i][j]);
+                    //}
                 } else {
                     itemsOut++;
-                    delete(itemsAvailable[itemsAvailable.indexOf(transactions[i][j])]);
+                    itemsAvailable[itemsAvailable.indexOf(actions[i][j])] = undefined;
                 }
             }
         }
         itemsAvailable = itemsAvailable.filter(function (elem) {
-            return elem;
+            if (elem) {
+                return elem;
+            }
         });
-        console.log('Пришло: ' + itemsIn + '\n' +
-            'Отправлено: ' + itemsOut + '\n' +
-            'Товары на складе: ' + itemsAvailable);
+        return 'Пришло: ' + itemsIn + ';\n' +
+            'Отправлено: ' + itemsOut + ';\n' +
+            'Товары на складе: ' + itemsAvailable;
     }
 
     balance(transactions);

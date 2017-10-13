@@ -83,7 +83,7 @@
             return amount;
         }
         for (start; start < end; start++) {
-            amount += (start < 7 && start > 23 ? 2.5 * 1.68 / 2 : 2.5 * 1.68);
+            amount += (start <= 7 && start >= 23 ? 2.5 * 1.68 / 2 : 2.5 * 1.68);
         }
         return amount;
     };
