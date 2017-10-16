@@ -136,7 +136,4 @@ function beautify(boringText) {
 // console.log(bruteForce(password));
 
 
-console.log((111111).toString(13));
-console.log((2587).toString(13));
-console.log((254511).toString(13));
 
