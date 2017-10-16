@@ -7,30 +7,23 @@
 <body>
 <script>
 
-    var spammer = {
-        startSpam: function (str) {
-            this.spamText.push(str);
-        },
-        stopSpam: function (str) {
-            this.spamText[this.spamText.indexOf(str)] = undefined;
-            this.spamText = this.spamText.filter(function (elem) {
-                if (elem) {
-                    return elem;
-                }
-            });
-        },
-        action: function () {
-            if (this.spamText.length > 0) {
-                for (var i = 0; i < this.spamText.length; i++) {
-                    console.log(this.spamText[i]);
-                }
+    var password = "YTFiMmMz";
+    console.log(atob(password));
+
+    function bruteForce(psswrd) {
+        var variant = 0;
+        while (true) {
+            if (btoa(variant.toString(13)) == psswrd) {
+                return variant.toString(13);
             }
-        },
-        spamText: []
-    };
-    setInterval(function () {
-        spammer.action();
-    }, 1000);
+            else if (variant.toString(13).length > 6) {
+                return 'max password length exceeded';
+            }
+            variant++;
+        }
+    }
+
+    console.log(bruteForce(password));
 
 </script>
 </body>

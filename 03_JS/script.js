@@ -125,15 +125,25 @@ function beautify(boringText) {
     boringText = boringText.join(' ');
     return boringText;
 }
+
 //6
 
-// var password = "YTFiMmMz";
-// function bruteForce(psswrd) {
-//     // ...
-//     var encodedVariant = btoa(variant);
-//     // ...
-// }
-// console.log(bruteForce(password));
+var password = "YTFiMmMz";
+
+function bruteForce(psswrd) {
+    var variant = 0;
+    while (true) {
+        if (btoa(variant.toString(13)) == psswrd) {
+            return variant.toString(13);
+        }
+        else if (variant.toString(13).length > 6) {
+            return 'max password length exceeded';
+        }
+        variant++;
+    }
+}
+
+console.log(bruteForce(password));
 
 
 
