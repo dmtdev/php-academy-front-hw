@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    var spammer = {
+        startSpam: function (str) {
+            this.spamText.push(str);
+        },
+        stopSpam: function (str) {
+            this.spamText[this.spamText.indexOf(str)] = undefined;
+            this.spamText = this.spamText.filter(function (elem) {
+                if (elem) {
+                    return elem;
+                }
+            });
+        },
+        action: function () {
+            if (this.spamText.length > 0) {
+                for (var i = 0; i < this.spamText.length; i++) {
+                    console.log(this.spamText[i]);
+                }
+            }
+        },
+        spamText: []
+    };
+    setInterval(function () {
+        spammer.action();
+    }, 1000);
+
+</script>
+</body>
+</html>
