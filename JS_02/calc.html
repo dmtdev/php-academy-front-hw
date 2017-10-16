@@ -5,6 +5,54 @@
     <title>Calc</title>
 </head>
 <body>
+<script>
+    var a, b;
+    var action;
+    var allowedActions = ['+', '-', '*', '/'];
 
+    function checkValue(value) {
+        if (isNaN(value)) {
+            alert("enter correct value");
+            return undefined;
+        }
+        return value;
+    }
+
+    function calc(a, b, action) {
+        switch (action) {
+            case '+':
+                alert('result: ' + (a + b));
+                break;
+            case '-':
+                alert('result: ' + (a - b));
+                break;
+            case '*':
+                alert('result: ' + (a * b));
+                break;
+            case '/':
+                alert('result: ' + (a / b));
+                break;
+            default:
+                break;
+        }
+    }
+
+    while (!a) {
+        a = prompt("first value");
+        a = checkValue(parseFloat(a));
+    }
+    while (!b) {
+        b = prompt("second value");
+        b = checkValue(parseFloat(b));
+    }
+    while (!action) {
+        action = prompt("enter action");
+        if (allowedActions.indexOf(action) == -1) {
+            alert("enter correct action");
+            action = undefined;
+        }
+        calc(a, b, action);
+    }
+</script>
 </body>
 </html>
