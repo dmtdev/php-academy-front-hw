@@ -100,18 +100,18 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function beautify(boringText) {
+function beautify(userText) {
     var smiles = [':)', ';)', '(:', ':p', ':D', ':-*'];
     var punctuation = ['.', ',', '?', '!', ';'];
-    boringText = boringText.split(' ');
-    for (var i = 0; i < boringText.length; i++) {
+    userText = userText.split(' ');
+    for (var i = 0; i < userText.length; i++) {
         var tmpString = '';
-        for (var j = 0; j < boringText[i].length; j++) {
+        for (var j = 0; j < userText[i].length; j++) {
             if (Math.random() > 0.5) {
-                tmpString += boringText[i][j].toLowerCase();
+                tmpString += userText[i][j].toLowerCase();
             }
             else {
-                tmpString += boringText[i][j].toUpperCase();
+                tmpString += userText[i][j].toUpperCase();
             }
         }
         if (punctuation.indexOf(tmpString[(tmpString.length - 1)]) != -1) {
@@ -120,10 +120,10 @@ function beautify(boringText) {
         else {
             tmpString += smiles[getRandomInt(0, smiles.length - 1)];
         }
-        boringText[i] = tmpString;
+        userText[i] = tmpString;
     }
-    boringText = boringText.join(' ');
-    return boringText;
+    userText = userText.join(' ');
+    return userText;
 }
 
 //6

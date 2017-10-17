@@ -83,8 +83,9 @@
             return amount;
         }
         for (start; start < end; start++) {
-            amount += (start <= 7 && start >= 23 ? 2.5 * 1.68 / 2 : 2.5 * 1.68);
+            amount += (start < 7 || start >= 23 ? 2.5 * 1.68 / 2 : 2.5 * 1.68);
         }
+        amount  = parseFloat(amount.toFixed(1));
         return amount;
     };
     console.log('В период с ' + startHour + ' до ' + endHour + ' часов ' +
