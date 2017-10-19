@@ -1,3 +1,5 @@
+"use strict";
+
 var o1 = {
     'f1': 'v1',
     'f2': 'v2',
