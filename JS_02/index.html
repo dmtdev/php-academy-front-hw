@@ -28,12 +28,15 @@
 
     function sortSalaries(salaryList) {
         var salaryListCopy = salaryList.slice();
+        var maxValue = Math.max.apply(null, salaryList);
+        var divider = maxValue.toString().length;
+        divider = Math.pow(10, divider - 1);
         for (var i = 0; i < salaryListCopy.length; i++) {
-            salaryListCopy[i] = salaryListCopy[i] / 1000;
+            salaryListCopy[i] = salaryListCopy[i] / divider;
         }
         salaryListCopy.sort();
         for (var i = 0; i < salaryListCopy.length; i++) {
-            salaryListCopy[i] = salaryListCopy[i] * 1000;
+            salaryListCopy[i] = Math.round(salaryListCopy[i] * divider);
         }
         return salaryListCopy;
     }
