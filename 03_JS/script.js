@@ -73,6 +73,11 @@ function addMedals(winner, type, count) {
 var spammer = {
     startSpam: function (str) {
         this.spamStrings.push(str);
+        if (!this.interval) {
+            this.interval = setInterval(function () {
+                spammer.action();
+            }, this.intervalTime);
+        }
     },
     stopSpam: function (str) {
         this.spamStrings[this.spamStrings.indexOf(str)] = undefined;
@@ -81,19 +86,23 @@ var spammer = {
                 return elem;
             }
         });
+        if (this.spamStrings.length < 1) {
+            clearInterval(this.interval);
+        }
+
     },
+    intervalTime: 1000,
+    interval: undefined,
     action: function () {
-        if (this.spamStrings.length > 0) {
-            for (var i = 0; i < this.spamStrings.length; i++) {
-                console.log(this.spamStrings[i]);
-            }
+        for (var i = 0; i < this.spamStrings.length; i++) {
+            console.log(this.spamStrings[i]);
         }
     },
     spamStrings: []
 };
-setInterval(function () {
-    spammer.action();
-}, 1000);
+// setInterval(function () {
+//     spammer.action();
+// }, spammer.interval);
 
 //5
 function getRandomInt(min, max) {

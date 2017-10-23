@@ -6,24 +6,37 @@
 </head>
 <body>
 <script>
-    "use strict";
-    var password = "YTFiMmMz";
-    console.log(atob(password));
-
-    function bruteForce(psswrd) {
-        var variant = 0;
-        while (true) {
-            if (btoa(variant.toString(13)) == psswrd) {
-                return variant.toString(13);
+    var spammer = {
+        startSpam: function (str) {
+            this.spamStrings.push(str);
+            if (!this.interval) {
+                this.interval = setInterval(function () {
+                    spammer.action();
+                }, this.intervalTime);
             }
-            else if (variant.toString(13).length > 6) {
-                return 'max password length exceeded';
+        },
+        stopSpam: function (str) {
+            this.spamStrings[this.spamStrings.indexOf(str)] = undefined;
+            this.spamStrings = this.spamStrings.filter(function (elem) {
+                if (elem) {
+                    return elem;
+                }
+            });
+            if (this.spamStrings.length < 1) {
+                clearInterval(this.interval);
+                this.interval = undefined;
             }
-            variant++;
-        }
-    }
 
-    console.log(bruteForce(password));
+        },
+        intervalTime: 1000,
+        interval: undefined,
+        action: function () {
+            for (var i = 0; i < this.spamStrings.length; i++) {
+                console.log(this.spamStrings[i]);
+            }
+        },
+        spamStrings: []
+    };
 
 </script>
 </body>
