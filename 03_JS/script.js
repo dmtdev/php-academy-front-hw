@@ -74,9 +74,9 @@ var spammer = {
     startSpam: function (str) {
         this.spamStrings.push(str);
         if (!this.interval) {
-            this.interval = setInterval(function () {
-                spammer.action();
-            }, this.intervalTime);
+            this.interval = setInterval(function (action, strings) {
+                action(strings);
+            }, this.intervalTime, this.action, this.spamStrings);
         }
     },
     stopSpam: function (str) {
@@ -88,18 +88,50 @@ var spammer = {
         });
         if (this.spamStrings.length < 1) {
             clearInterval(this.interval);
+            this.interval = undefined;
         }
 
     },
     intervalTime: 1000,
     interval: undefined,
-    action: function () {
-        for (var i = 0; i < this.spamStrings.length; i++) {
-            console.log(this.spamStrings[i]);
+    action: function (strings) {
+        for (var i = 0; i < strings.length; i++) {
+            console.log(strings[i]);
         }
     },
     spamStrings: []
 };
+
+// var spammer = {
+//     startSpam: function (str) {
+//         this.spamStrings.push(str);
+//         if (!this.interval) {
+//             this.interval = setInterval(function () {
+//                 spammer.action();
+//             }, this.intervalTime);
+//         }
+//     },
+//     stopSpam: function (str) {
+//         this.spamStrings[this.spamStrings.indexOf(str)] = undefined;
+//         this.spamStrings = this.spamStrings.filter(function (elem) {
+//             if (elem) {
+//                 return elem;
+//             }
+//         });
+//         if (this.spamStrings.length < 1) {
+//             clearInterval(this.interval);
+//         }
+//
+//     },
+//     intervalTime: 1000,
+//     interval: undefined,
+//     action: function () {
+//         for (var i = 0; i < this.spamStrings.length; i++) {
+//             console.log(this.spamStrings[i]);
+//         }
+//     },
+//     spamStrings: []
+// };
 // setInterval(function () {
 //     spammer.action();
 // }, spammer.interval);

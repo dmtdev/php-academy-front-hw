@@ -29,8 +29,8 @@
     function sortSalaries(salaryList) {
         var salaryListCopy = salaryList.slice();
         var maxValue = Math.max.apply(null, salaryList);
-        var divider = maxValue.toString().length;
-        divider = Math.pow(10, divider - 1);
+        var divider = maxValue.toString().length - 1;
+        divider = Math.pow(10, divider);
         for (var i = 0; i < salaryListCopy.length; i++) {
             salaryListCopy[i] = salaryListCopy[i] / divider;
         }
