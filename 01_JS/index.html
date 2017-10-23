@@ -77,29 +77,26 @@
 
     console.log('Сумма чисел от 1 до ' + n + ' равна: ' + sumRecursive(n));
     //7
-    var startHour = 6, endHour = 24;
-    var countEnergyCost = function (start, end) {
-        var amount = 0;
-        if (start >= end) {
-            return amount;
-        }
-        for (start; start < end; start++) {
-            //amount += (start < 7 || start >= 23 ? 2.5 * 1.68 / 2 : 2.5 * 1.68);
-            if (start < 7 || start >= 23) {
-                amount += 2.5 * 1.68 / 2;
-            }
-            else {
-                amount += 2.5 * 1.68;
-            }
-            //TODO: magic numbers :(
-        }
-        amount = parseFloat(amount.toFixed(1));
-        return amount;
-    };
-    console.log('В период с ' + startHour + ' до ' + endHour + ' часов ' +
-        'потреблено энергии на  ' +
-        countEnergyCost(startHour, endHour) + ' грн. ');
+//    var startHour = 6, endHour = 24;
+//    var countEnergyCost = function (start, end) {
+//        var amount = 0;
+//        if (start >= end) {
+//            return amount;
+//        }
+//        for (start; start < end; start++) {
+//            //amount += (start < 7 || start >= 23 ? 2.5 * 1.68 / 2 : 2.5 * 1.68);
+//            if (start < 7 || start >= 23) {
+//                amount += 2.5 * 1.68 / 2;
+//            }
+//            else {
+//                amount += 2.5 * 1.68;
+//            }
+//        }
+//        amount = parseFloat(amount.toFixed(1));
+//        return amount;
+//    };
 
+    //7
     var countEnergyCost = function (start, end) {
         var ENGINE_POWER = 2.5;
         var PRICE_BY_KW = 1.68;
@@ -120,23 +117,38 @@
         amount = parseFloat(amount.toFixed(1));
         return amount;
     };
+    console.log('В период с ' + startHour + ' до ' + endHour + ' часов ' +
+        'потреблено энергии на  ' +
+        countEnergyCost(startHour, endHour) + ' грн. ');
 
     //7.1
     var countEnergyCost = function (start, end) {
         var ENGINE_POWER = 2.5;
         var PRICE_BY_KW = 1.68;
         var NIGHT_RATE = 0.5;
+        var FIRST_TIME_LIMIT = 7;
+        var SECOND_TIME_LIMIT = 23;
         var amount = 0;
         if (start >= end) {
             return amount;
         }
-        var HOURS_COUNT = end -start;
+        var hours = end - start;
+        if (start < FIRST_TIME_LIMIT) {
+            amount += (FIRST_TIME_LIMIT - start) * ENGINE_POWER * PRICE_BY_KW * NIGHT_RATE;
+            hours = hours - (FIRST_TIME_LIMIT - start);
 
-
-
-            amount = parseFloat(amount.toFixed(1));
+        }
+        if (end >= SECOND_TIME_LIMIT) {
+            amount += (end - SECOND_TIME_LIMIT) * ENGINE_POWER * PRICE_BY_KW * NIGHT_RATE;
+            hours = hours - (end - SECOND_TIME_LIMIT);
+        }
+        amount += hours * ENGINE_POWER * PRICE_BY_KW;
+        amount = parseFloat(amount.toFixed(1));
         return amount;
-    };
+    }
+    console.log('В период с ' + startHour + ' до ' + endHour + ' часов ' +
+        'потреблено энергии на  ' +
+        countEnergyCost(startHour, endHour) + ' грн. ');
 
 
 </script>
