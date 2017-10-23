@@ -10,9 +10,9 @@
         startSpam: function (str) {
             this.spamStrings.push(str);
             if (!this.interval) {
-                this.interval = setInterval(function () {
-                    spammer.action();
-                }, this.intervalTime);
+                this.interval = setInterval(function (action) {
+                    action();
+                }, this.intervalTime, action);
             }
         },
         stopSpam: function (str) {
@@ -31,6 +31,7 @@
         intervalTime: 1000,
         interval: undefined,
         action: function () {
+            console.log("action");
             for (var i = 0; i < this.spamStrings.length; i++) {
                 console.log(this.spamStrings[i]);
             }
