@@ -12,7 +12,7 @@
             if (!this.interval) {
                 this.interval = setInterval(function (action) {
                     action();
-                }, this.intervalTime, action);
+                }, this.intervalTime, this.action);
             }
         },
         stopSpam: function (str) {
