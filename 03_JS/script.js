@@ -1,5 +1,3 @@
-"use strict";
-
 var o1 = {
     'f1': 'v1',
     'f2': 'v2',
@@ -74,24 +72,24 @@ function addMedals(winner, type, count) {
 //4
 var spammer = {
     startSpam: function (str) {
-        this.spamText.push(str);
+        this.spamStrings.push(str);
     },
     stopSpam: function (str) {
-        this.spamText[this.spamText.indexOf(str)] = undefined;
-        this.spamText = this.spamText.filter(function (elem) {
+        this.spamStrings[this.spamStrings.indexOf(str)] = undefined;
+        this.spamStrings = this.spamStrings.filter(function (elem) {
             if (elem) {
                 return elem;
             }
         });
     },
     action: function () {
-        if (this.spamText.length > 0) {
-            for (var i = 0; i < this.spamText.length; i++) {
-                console.log(this.spamText[i]);
+        if (this.spamStrings.length > 0) {
+            for (var i = 0; i < this.spamStrings.length; i++) {
+                console.log(this.spamStrings[i]);
             }
         }
     },
-    spamText: []
+    spamStrings: []
 };
 setInterval(function () {
     spammer.action();
