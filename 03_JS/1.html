@@ -6,37 +6,24 @@
 </head>
 <body>
 <script>
-    var spammer = {
-        startSpam: function (str) {
-            this.spamStrings.push(str);
-            if (!this.interval) {
-                this.interval = setInterval(function (action, strings) {
-                    action(strings);
-                }, this.intervalTime, this.action, this.spamStrings);
+    "use strict";
+    var Years = function (year) {
+        this.year = year;
+        this.isLeapYear = function () {
+            if ((this.year % 4 == 0 && this.year % 100 != 0) || (year % 400 == 0)) {
+                return true;
             }
-        },
-        stopSpam: function (str) {
-            this.spamStrings[this.spamStrings.indexOf(str)] = undefined;
-            this.spamStrings = this.spamStrings.filter(function (elem) {
-                if (elem) {
-                    return elem;
-                }
-            });
-            if (this.spamStrings.length < 1) {
-                clearInterval(this.interval);
-                this.interval = undefined;
-            }
-
-        },
-        intervalTime: 1000,
-        interval: undefined,
-        action: function (strings) {
-           for (var i = 0; i < strings.length; i++) {
-                console.log(strings[i]);
-            }
-        },
-        spamStrings: []
+            return false;
+        };
+        this.toString = function () {
+            var isLeapYear = (this.isLeapYear(this.year) ? "" : "not ");
+            return this.year + " - " + isLeapYear + "leap-year";
+        };
+        this.valueOf = function () {
+            return this.year;
+        };
     };
+
 
 </script>
 </body>
