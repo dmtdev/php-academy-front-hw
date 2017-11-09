@@ -90,11 +90,40 @@ Arr.sort();
 console.log(Arr);
 Arr.tmpSort = Arr.sort;
 Arr.sort = [].sort;
-Arr.sort(function(a,b){
+Arr.sort(function (a, b) {
     return a < b;
 });
 console.log(Arr);
-Arr.sort=Arr.tmpSort;
+Arr.sort = Arr.tmpSort;
 
+console.log('Task 5');
+
+var arr = [1,
+    2,
+    'abc',
+    {a: 2, b: 4}
+];
+
+var decorInput = function (f) {
+    return function () {
+        for (var prop in arguments) {
+            if (typeof arguments[prop] == 'string') {
+                arguments[prop] = arguments[prop].length;
+            }
+            if (typeof arguments[prop] == 'object') {
+                for (var k in arguments[prop]) {
+                    if (typeof arguments[prop][k] == 'number') {
+                        arguments[prop] = arguments[prop][k];
+                    }
+                }
+                arguments[prop] = 0;
+            }
+        }
+        var result = f.apply(this, arguments);
+        return result;
+    }
+};
+Math.max = decorInput(Math.max);
+console.log(Math.max.apply(null, arr));
 
 
