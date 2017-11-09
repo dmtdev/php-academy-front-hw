@@ -97,7 +97,6 @@ console.log(Arr);
 Arr.sort = Arr.tmpSort;
 
 console.log('Task 5');
-
 var arr = [1,
     2,
     'abc',
