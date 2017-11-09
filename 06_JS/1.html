@@ -69,10 +69,10 @@
         this.calcCurrentVolume = function () {
             var volumePerSec = this._speeds['inSpeed'] - this._speeds['outSpeed1'] - this._speeds['outSpeed2'];
             if (volumePerSec > 0) {
-                this._currentVolume = Math.max(this._volume, this._currentVolume + volumePerSec);
+                this._currentVolume = Math.min(this._volume, this._currentVolume + volumePerSec);
             }
             else {
-                this._currentVolume = Math.min(this._volume, this._currentVolume + volumePerSec);
+                this._currentVolume = Math.max(0, this._currentVolume + volumePerSec);
             }
             return volumePerSec;
         };
@@ -84,7 +84,7 @@
             }
             var fillPercent = (this._currentVolume / this._volume) * 100;
             fillPercent = fillPercent.toFixed(2) + ' %';
-            return fillPercent;
+            return logString + fillPercent;
         };
         this.stateLogger = function () {
             console.clear();
