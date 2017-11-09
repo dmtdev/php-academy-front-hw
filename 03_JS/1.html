@@ -7,22 +7,18 @@
 <body>
 <script>
     "use strict";
-    var Years = function (year) {
-        this.year = year;
-        this.isLeapYear = function () {
-            if ((this.year % 4 == 0 && this.year % 100 != 0) || (year % 400 == 0)) {
-                return true;
-            }
-            return false;
-        };
-        this.toString = function () {
-            var isLeapYear = (this.isLeapYear(this.year) ? "" : "not ");
-            return this.year + " - " + isLeapYear + "leap-year";
-        };
-        this.valueOf = function () {
-            return this.year;
-        };
+    var obj = {
+        obj: function (v) {
+            var tmpObj = {}
+            tmpObj.value = v;
+            return tmpObj;
+        }
     };
+    var o0 = obj.obj(0);
+    console.log(o0);
+    var o1 = obj.obj(1);
+    console.log(o1);
+    console.log(o0==o1);
 
 
 </script>

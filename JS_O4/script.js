@@ -88,7 +88,7 @@ var Years = function (year) {
 var Years = function (year) {
     this.year = year;
     this.isLeapYear = function () {
-        if ((this.year % 4 == 0 && this.year % 100 != 0) || (year % 400 == 0)) {
+        if ((!(this.year % 4) && (this.year % 100)) || (!(year % 400))) {
             return true;
         }
         return false;
@@ -101,3 +101,4 @@ var Years = function (year) {
         return this.year;
     };
 };
+
