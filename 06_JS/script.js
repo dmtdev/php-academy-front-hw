@@ -1,3 +1,4 @@
+//Task 1
 var Tank = function (volume, inSpeed) {
 
     var volume = volume;
@@ -86,10 +87,64 @@ var Tank = function (volume, inSpeed) {
 
     var interval = setInterval(function (logger) {
         logger();
-    },intervalTime, stateLogger);
+    }, intervalTime, stateLogger);
 };
 
+//Task 2
+var Runner = function () {
+    var medals = {};
 
-var Runner = function (){
-
+    this.getSetMedals = function (type, count) {
+        if (arguments.length == 1) {
+            return medals[type];
+        }
+        else {
+            if (medals[type]) {
+                medals[type] += count;
+            }
+            else {
+                medals[type] = count;
+            }
+        }
+    }
 };
+
+//Task 3
+
+var tmpBook = function () {
+    var isbn = '0000-0000-0000-0000';
+    var name = 'The Little Book Of CALM';
+    var autors = ['Some Name'];
+    var lang = 'en';
+    var pageCount = 350;
+    this.price = 10;
+    this.coverType = 'hard';
+};
+
+var tmpMagazine = function () {
+    var name = 'Metropolitan Magazine';
+    var lang = 'en';
+    var pageCount = 50;
+    this.price = 5;
+    this.periodical = true;
+};
+
+var BookShopGoods = function (name, lang, pageCount, price) {
+    var name = name;
+    var lang = lang;
+    var pageCount = pageCount;
+    this.price = price;
+};
+
+var Book = function (name, lang, pageCount, price, isbn, authors, coverType) {
+    BookShopGoods.apply(this, arguments);
+    var isbn = isbn;
+    var authors = authors;
+    var coverType = coverType;
+};
+
+var Magazine = function (name, lang, pageCount, price, periodical) {
+    BookShopGoods.apply(this, arguments);
+    var periodical = periodical;
+};
+
