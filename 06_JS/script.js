@@ -47,4 +47,8 @@ var Tank = function (volume, inSpeed) {
     };
 };
 
-var Tank = new Tank(100);
+var Tank = new Tank(100,2);
+
+var Runner = function (){
+    
+};

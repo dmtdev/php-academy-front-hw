@@ -91,7 +91,7 @@ console.log(Arr);
 Arr.tmpSort = Arr.sort;
 Arr.sort = [].sort;
 Arr.sort(function (a, b) {
-    return b - a;
+    return a < b;
 });
 console.log(Arr);
 Arr.sort = Arr.tmpSort;
