@@ -1,54 +1,95 @@
 var Tank = function (volume, inSpeed) {
-    this._volume = volume;
-    this._currentVolume = 0;
-    this._inSpeed = inSpeed;
 
-    this._valves = {
+    var volume = volume;
+    var currentVolume = 0;
+    var inSpeed = inSpeed;
+
+    var valves = {
         inIsOpen: false,
         outIsOpen1: false,
         outIsOpen2: false
     };
 
-    this._speeds = {
-        inSpeed: inSpeed,
+    var speeds = {
+        inSpeed: 0,
         outSpeed1: 0,
         outSpeed2: 0
     };
 
-    this._logInterval;
-    this._intervalTime = 1000;
+    var intervalTime = 3000;
 
-    var stateLogger = function () {
-
+    this.openInValve = function () {
+        valves['inIsOpen'] = true;
+        speeds['inSpeed'] = inSpeed;
     };
 
-    this.openCloseInValve = function () {
-        if (this._valves['inIsOpen']) {
-            this._valves['inIsOpen'] = false;
-        }
-        else {
-            this._valves['inIsOpen'] = true;
-        }
+    this.closeInValve = function () {
+        valves['inIsOpen'] = false;
+        speeds['inSpeed'] = 0;
     };
 
-    this.openCloseOutValve = function (valve, speed) {
+    this.openFirstOutValve = function (speed) {
         if (speed) {
-            if (this._valves['outIsOpen' + valve]) {
+            if (valves['outIsOpen1']) {
                 return false;
             }
-            else {
-                this._valves['outIsOpen' + valve] = true;
-                this._speeds['outSpeed' + valve] = speed;
-            }
-        }
-        else {
-            this._valves['outIsOpen' + valve] = false;
+            valves['outIsOpen1'] = true;
+            speeds['outSpeed1'] = speed;
         }
     };
+
+    this.openSecondOutValve = function (speed) {
+        if (speed) {
+            if (valves['outIsOpen2']) {
+                return false;
+            }
+            valves['outIsOpen2'] = true;
+            speeds['outSpeed2'] = speed;
+        }
+    };
+
+    this.closeFirstOutValve = function () {
+        valves['outIsOpen1'] = false;
+        speeds['outSpeed1'] = 0;
+    };
+
+    this.closeSecondOutValve = function () {
+        valves['outIsOpen2'] = false;
+        speeds['outSpeed2'] = 0;
+    };
+
+    var calcCurrentVolume = function () {
+        var volumePerSec = speeds['inSpeed'] - speeds['outSpeed1'] - speeds['outSpeed2'];
+        if (volumePerSec > 0) {
+            currentVolume = Math.min(volume, currentVolume + volumePerSec);
+        }
+        else {
+            currentVolume = Math.max(0, currentVolume + volumePerSec);
+        }
+    };
+
+    var buildLogString = function () {
+        var logString = '';
+        for (var k in valves) {
+            logString += (valves[k] ? '@' : '.') + ' ';
+        }
+        var fillPercent = (currentVolume / volume) * 100;
+        fillPercent = fillPercent.toFixed(2) + ' %';
+        return logString + fillPercent;
+    };
+
+    var stateLogger = function () {
+        console.clear();
+        calcCurrentVolume();
+        console.log(buildLogString());
+    };
+
+    var interval = setInterval(function (logger) {
+        logger();
+    },intervalTime, stateLogger);
 };
 
-var Tank = new Tank(100,2);
 
 var Runner = function (){
-    
+
 };
