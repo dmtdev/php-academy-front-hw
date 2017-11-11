@@ -28,9 +28,13 @@ String.prototype.intrim = function () {
     return arr.join(' ');
 };
 String.prototype.reverse = function () {
-    var halfLength = Math.floor(this.length/2);
+    var result = '';
+    for (var i = this.length - 1;i>-1;i--){
+        result += this[i];
+    }
+    return result;
 };
 
-String.prototype.isPalindrome = function(){
+String.prototype.isPalindrome = function () {
     return (this.toString() == this.toString().reverse());
 };
