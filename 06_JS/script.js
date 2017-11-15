@@ -20,7 +20,7 @@ var Tank = function (volume, inSpeed) {
     };
 
     this.openInValve = function () {
-        if(!interval){
+        if (!interval) {
             startInterval();
         }
         valves['inIsOpen'] = true;
@@ -146,8 +146,8 @@ var Tank2 = function (volume, speed) {
      * @param speed
      */
     this.openCloseOutValve = function (valveNum, action, speed) {
-        valveNum = +(valveNum);
-        speed = +(speed);
+        valveNum = (+(valveNum) ? valveNum : 0);
+        speed = (+(speed) ? valveNum : 0);
         var valve = VALVE_PREFIX + valveNum;
         var speedKey = SPEED_PREFIX + valveNum;
 
