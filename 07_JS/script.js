@@ -32,28 +32,21 @@ Cat.prototype = pet;
 Cat.prototype.constructor = Cat;
 
 //Task 2
-
-var Chicken = function(name, sex) {
+var Chicken = function (name, sex) {
     this.name = name;
-    if(sex == "male") {
-        this.crow = function() {
+    this.sex = sex;
+    if (sex == 'male') {
+        Chicken.prototype.crow = function () {
             alert("Cock-A-Doodle-Doo!");
-        };
-    } else {
-        this.produceEgg = function() {
+        }
+    }
+    else {
+        Chicken.prototype.produceEgg = function () {
             var egg = {type: null};
             return egg;
         };
     }
-    this.getSex = function() {
-        return sex;
-    };
 };
-
-var Chicken = function(name, sex) {
-    this.name = name;
-    var sex = sex;
-};
-Chicken.prototype.getSex = function(){
-  return sex;
+Chicken.prototype.getSex = function () {
+    return this.sex;
 };
