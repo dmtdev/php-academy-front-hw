@@ -4,6 +4,8 @@ var Tank = function (volume, inSpeed) {
     var volume = volume;
     var currentVolume = 0;
     var inSpeed = inSpeed;
+    var interval;
+    var intervalTime = 3000;
 
     var valves = {
         inIsOpen: false,
@@ -17,9 +19,10 @@ var Tank = function (volume, inSpeed) {
         outSpeed2: 0
     };
 
-    var intervalTime = 3000;
-
     this.openInValve = function () {
+        if(!interval){
+            startInterval();
+        }
         valves['inIsOpen'] = true;
         speeds['inSpeed'] = inSpeed;
     };
@@ -85,9 +88,120 @@ var Tank = function (volume, inSpeed) {
         console.log(buildLogString());
     };
 
-    var interval = setInterval(function (logger) {
-        logger();
-    }, intervalTime, stateLogger);
+    var startInterval = function () {
+        interval = setInterval(function (logger) {
+            logger();
+        }, intervalTime, stateLogger);
+    }
+};
+
+//Task 1.1
+var Tank2 = function (volume, speed) {
+
+    var volume = volume;
+    var currentVolume = 0;
+    var inSpeed = speed;
+    var interval;
+    var intervalTime = 3000;
+    var VALVE_PREFIX = 'outIsOpen';
+    var SPEED_PREFIX = 'outSpeed';
+
+    var valves = {
+        inIsOpen: false,
+        outIsOpen1: false,
+        outIsOpen2: false,
+        outIsOpen3: false
+    };
+
+    var speeds = {
+        inSpeed: 0,
+        outSpeed1: 0,
+        outSpeed2: 0,
+        outSpeed3: 0
+    };
+
+    /**
+     * @param action open|close
+     */
+    this.openCloseInValve = function (action) {
+        if (!interval) {
+            startInterval();
+        }
+        switch (action) {
+            case  'open':
+                valves['inIsOpen'] = true;
+                speeds['inSpeed'] = inSpeed;
+                break;
+            case  'close':
+                valves['inIsOpen'] = false;
+                speeds['inSpeed'] = 0;
+                break;
+            default:
+                console.warn('Wrong action for openCloseInValve, open|close needed.');
+        }
+    };
+    /**
+     * @param valveNum
+     * @param action open|close
+     * @param speed
+     */
+    this.openCloseOutValve = function (valveNum, action, speed) {
+        valveNum = +(valveNum);
+        speed = +(speed);
+        var valve = VALVE_PREFIX + valveNum;
+        var speedKey = SPEED_PREFIX + valveNum;
+
+        switch (action) {
+            case  'open':
+                valves[valve] = true;
+                speeds[speedKey] = speed;
+                break;
+            case  'close':
+                valves[valve] = false;
+                speeds[speedKey] = 0;
+                break;
+            default:
+                console.warn('Wrong action for openCloseOutValve, open|close needed.');
+        }
+    };
+
+    var calcCurrentVolume = function () {
+        var outPerSec = 0;
+        for (var k in speeds) {
+            if (k.indexOf('outSpeed') != -1) {
+                outPerSec += speeds[k];
+            }
+        }
+        var volumePerSec = speeds['inSpeed'] - outPerSec;
+        if (volumePerSec > 0) {
+            currentVolume = Math.min(volume, currentVolume + volumePerSec);
+        }
+        else {
+            currentVolume = Math.max(0, currentVolume + volumePerSec);
+        }
+    };
+
+    var buildLogString = function () {
+        var logString = '';
+        for (var k in valves) {
+            logString += (valves[k] ? '@' : '.') + ' ';
+        }
+        var fillPercent = (currentVolume / volume) * 100;
+        fillPercent = fillPercent.toFixed(2) + ' %';
+        return logString + fillPercent;
+    };
+
+    var stateLogger = function () {
+        console.clear();
+        calcCurrentVolume();
+        console.log(buildLogString());
+    };
+
+    var startInterval = function () {
+        interval = setInterval(function (logger) {
+            logger();
+        }, intervalTime, stateLogger);
+    }
 };
 
 //Task 2
