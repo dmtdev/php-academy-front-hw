@@ -18,7 +18,6 @@ Array.prototype.shuffle = function () {
     })
 };
 String.prototype.intrim = function () {
-    // noinspection JSAnnotator
     var arr = this.split(' ');
     arr = arr.filter(function (elem) {
         if (elem) {
@@ -29,7 +28,7 @@ String.prototype.intrim = function () {
 };
 String.prototype.reverse = function () {
     var result = '';
-    for (var i = this.length - 1;i>-1;i--){
+    for (var i = this.length - 1; i > -1; i--) {
         result += this[i];
     }
     return result;
