@@ -204,6 +204,7 @@ var Tank2 = function (volume, speed) {
     }
 };
 
+
 //Task 2
 var Runner = function () {
     var medals = {};
@@ -261,4 +262,5 @@ var Magazine = function (name, lang, pageCount, price, periodical) {
     BookShopGoods.apply(this, arguments);
     var periodical = periodical;
 };
+
 
