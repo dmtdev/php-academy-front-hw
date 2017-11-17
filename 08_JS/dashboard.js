@@ -38,10 +38,14 @@ dashboard.formatDate = function (timestamp) {
     if(typeof timestamp != 'number' || isNaN(timestamp)){
         timestamp = 0;
     }
-    var d = new Date(timestamp);
+    var d = new Date(+timestamp);
     return dashboard.leadZero(d.getHours()) + ':' + dashboard.leadZero(d.getMinutes()) + ' at ' + dashboard.leadZero(d.getDate()) + '-' + dashboard.leadZero(d.getMonth() + 1) + '-' + d.getFullYear();
 };
 dashboard.formatDateAgo = function (timestamp) {
+    timestamp = +timestamp;
+    if(typeof timestamp != 'number' || isNaN(timestamp) || timestamp == 0 ){
+        return 'Error: wrong timestamp';
+    }
     var result = '';
     var currentDate = +(new Date());
     var delta = (currentDate - timestamp) / 1000;
@@ -50,7 +54,7 @@ dashboard.formatDateAgo = function (timestamp) {
         days: 24 * 60 * 60,
         hours: 60 * 60,
         minutes: 60,
-        seconds: 0
+        seconds: 1 //fix: if 0 - timePassed == Infinity
     };
     var foundTimeline;
     for (var i in timelines) {
