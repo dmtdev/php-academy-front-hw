@@ -6,6 +6,7 @@ Array.prototype.even = function (f) {
     }
 };
 Array.prototype.odd = function (f) {
+
     for (var i = 0; i < this.length; i++) {
         if (i % 2 != 0) {
             this[i] = f(this[i]);
@@ -35,5 +36,5 @@ String.prototype.reverse = function () {
 };
 
 String.prototype.isPalindrome = function () {
-    return (this.toString() == this.toString().reverse());
+    return (this == this.reverse());
 };

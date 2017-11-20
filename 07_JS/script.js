@@ -34,7 +34,7 @@ Cat.prototype.constructor = Cat;
 //Task 2
 var Chicken = function (name, sex) {
     this.name = name;
-    this.sex = sex;
+    var sex = sex;
     if (sex == 'male') {
         Chicken.prototype.crow = function () {
             alert("Cock-A-Doodle-Doo!");
@@ -50,3 +50,5 @@ var Chicken = function (name, sex) {
 Chicken.prototype.getSex = function () {
     return this.sex;
 };
+
+

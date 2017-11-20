@@ -115,6 +115,8 @@ var decorInput = function (f) {
                         arguments[prop] = arguments[prop][k];
                     }
                 }
+            }
+            else{
                 arguments[prop] = 0;
             }
         }
