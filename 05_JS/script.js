@@ -53,16 +53,17 @@ var runner = new Runner('jon', [1]);
 var Player = function (ticketCount, prizesSum) {
     this.ticketCount = ticketCount;
     this.prizeSum = prizesSum;
+    this.getPrize = function (player, sum) {
+        player.payedSum = sum;
+    };
 };
-Player.getPrize = function (player, sum) {
-    player.payedSum = sum;
-};
+//Player.getPrize =
 
 var player = new Player(10, 100);
-Player.getPrize(player, 1000);
+player.getPrize(player, 1000);
 console.log(player);
 
-Player.getPrize.call(runner, runner, 1000);
+player.getPrize.call(runner, runner, 1000);
 console.log(runner);
 
 console.log('Task 4');
