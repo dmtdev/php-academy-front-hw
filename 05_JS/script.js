@@ -111,7 +111,6 @@ var decorInput = function (f) {
                 arguments[prop] = arguments[prop].length;
             }
             if (typeof arguments[prop] == 'object') {
-                console.log('obj');
                 for (var k in arguments[prop]) {
                     if (typeof arguments[prop][k] == 'number') {
                         arguments[prop] = arguments[prop][k];
