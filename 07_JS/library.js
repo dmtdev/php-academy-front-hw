@@ -1,17 +1,20 @@
 Array.prototype.even = function (f) {
-    for (var i = 0; i < this.length; i++) {
+    var arr = this;
+    for (var i = 0; i < arr.length; i++) {
         if (i % 2 == 0) {
-            this[i] = f(this[i]);
+            arr[i] = f(arr[i]);
         }
     }
+    return arr;
 };
 Array.prototype.odd = function (f) {
-
-    for (var i = 0; i < this.length; i++) {
+    var arr = this;
+    for (var i = 0; i < arr.length; i++) {
         if (i % 2 != 0) {
-            this[i] = f(this[i]);
+            arr[i] = f(arr[i]);
         }
     }
+    return arr;
 };
 Array.prototype.shuffle = function () {
     this.sort(function (a, b) {
