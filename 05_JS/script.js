@@ -2,17 +2,12 @@ console.log('Task 1');
 var Runner = function () {
     this.medals = [];
 };
-Runner.medalTypes = [];
-Runner.medalTypesCounter = 0;
+Runner.medalTypes = ['empty'];
 Runner.giveMedal = function (runner, medal) {
     if (this.medalTypes.indexOf(medal) == -1) {
-        this.medalTypesCounter++;
-        this.medalTypes[this.medalTypesCounter] = medal;
-        runner.medals.push(this.medalTypesCounter);
+        this.medalTypes.push(medal);
     }
-    else {
-        runner.medals.push(this.medalTypes.indexOf(medal));
-    }
+    runner.medals.push(this.medalTypes.indexOf(medal));
 };
 
 var runner1 = new Runner;
@@ -100,8 +95,8 @@ Arr.sort = Arr.tmpSort;
 console.log('Task 5');
 var arr = [1,
     2,
-    'abc',
-    {a: 2, b: 4}
+    'abcde',
+    {a: 11, b: 4}
 ];
 
 var decorInput = function (f) {
@@ -116,10 +111,6 @@ var decorInput = function (f) {
                         arguments[prop] = arguments[prop][k];
                     }
                 }
-
-            }
-            else{
-                arguments[prop] = 0;
             }
         }
         var result = f.apply(this, arguments);
