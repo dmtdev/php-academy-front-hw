@@ -7,12 +7,6 @@ var Tank = function (volume, inSpeed) {
     var interval;
     var intervalTime = 3000;
 
-    var valves = {
-        inIsOpen: false,
-        outIsOpen1: false,
-        outIsOpen2: false
-    };
-
     var speeds = {
         inSpeed: 0,
         outSpeed1: 0,
@@ -23,47 +17,35 @@ var Tank = function (volume, inSpeed) {
         if (!interval) {
             startInterval();
         }
-        valves['inIsOpen'] = true;
-        speeds['inSpeed'] = inSpeed;
+        speeds.inSpeed = inSpeed;
     };
 
     this.closeInValve = function () {
-        valves['inIsOpen'] = false;
-        speeds['inSpeed'] = 0;
+        speeds.inSpeed = 0;
     };
 
     this.openFirstOutValve = function (speed) {
         if (speed) {
-            if (valves['outIsOpen1']) {
-                return false;
-            }
-            valves['outIsOpen1'] = true;
-            speeds['outSpeed1'] = speed;
+            speeds.outSpeed1 = -speed;
         }
     };
 
     this.openSecondOutValve = function (speed) {
         if (speed) {
-            if (valves['outIsOpen2']) {
-                return false;
-            }
-            valves['outIsOpen2'] = true;
-            speeds['outSpeed2'] = speed;
+            speeds.outSpeed2 = -speed;
         }
     };
 
     this.closeFirstOutValve = function () {
-        valves['outIsOpen1'] = false;
-        speeds['outSpeed1'] = 0;
+        speeds.outSpeed1 = 0;
     };
 
     this.closeSecondOutValve = function () {
-        valves['outIsOpen2'] = false;
-        speeds['outSpeed2'] = 0;
+        speeds.outSpeed2 = 0;
     };
 
     var calcCurrentVolume = function () {
-        var volumePerSec = speeds['inSpeed'] - speeds['outSpeed1'] - speeds['outSpeed2'];
+        var volumePerSec = speeds.inSpeed + speeds.outSpeed1 + speeds.outSpeed2;
         if (volumePerSec > 0) {
             currentVolume = Math.min(volume, currentVolume + volumePerSec);
         }
@@ -74,8 +56,8 @@ var Tank = function (volume, inSpeed) {
 
     var buildLogString = function () {
         var logString = '';
-        for (var k in valves) {
-            logString += (valves[k] ? '@' : '.') + ' ';
+        for (var k in speeds) {
+            logString += (speeds[k] != 0 ? '@' : '.') + ' ';
         }
         var fillPercent = (currentVolume / volume) * 100;
         fillPercent = fillPercent.toFixed(2) + ' %';
@@ -103,15 +85,7 @@ var Tank2 = function (volume, speed) {
     var inSpeed = speed;
     var interval;
     var intervalTime = 3000;
-    var VALVE_PREFIX = 'outIsOpen';
     var SPEED_PREFIX = 'outSpeed';
-
-    var valves = {
-        inIsOpen: false,
-        outIsOpen1: false,
-        outIsOpen2: false,
-        outIsOpen3: false
-    };
 
     var speeds = {
         inSpeed: 0,
@@ -129,12 +103,10 @@ var Tank2 = function (volume, speed) {
         }
         switch (action) {
             case  'open':
-                valves['inIsOpen'] = true;
-                speeds['inSpeed'] = inSpeed;
+                speeds.inSpeed = inSpeed;
                 break;
             case  'close':
-                valves['inIsOpen'] = false;
-                speeds['inSpeed'] = 0;
+                speeds.inSpeed = 0;
                 break;
             default:
                 console.warn('Wrong action for openCloseInValve, open|close needed.');
@@ -146,18 +118,14 @@ var Tank2 = function (volume, speed) {
      * @param speed
      */
     this.openCloseOutValve = function (valveNum, action, speed) {
-        valveNum = (+(valveNum) ? valveNum : 0);
         speed = (+(speed) ? valveNum : 0);
-        var valve = VALVE_PREFIX + valveNum;
         var speedKey = SPEED_PREFIX + valveNum;
 
         switch (action) {
             case  'open':
-                valves[valve] = true;
-                speeds[speedKey] = speed;
+                speeds[speedKey] = -speed;
                 break;
             case  'close':
-                valves[valve] = false;
                 speeds[speedKey] = 0;
                 break;
             default:
@@ -166,25 +134,24 @@ var Tank2 = function (volume, speed) {
     };
 
     var calcCurrentVolume = function () {
-        var outPerSec = 0;
+        var volumePerSec = 0;
         for (var k in speeds) {
-            if (k.indexOf('outSpeed') != -1) {
-                outPerSec += speeds[k];
-            }
+            volumePerSec += speeds[k];
         }
-        var volumePerSec = speeds['inSpeed'] - outPerSec;
         if (volumePerSec > 0) {
             currentVolume = Math.min(volume, currentVolume + volumePerSec);
         }
         else {
             currentVolume = Math.max(0, currentVolume + volumePerSec);
         }
+
+
     };
 
     var buildLogString = function () {
         var logString = '';
-        for (var k in valves) {
-            logString += (valves[k] ? '@' : '.') + ' ';
+        for (var k in speeds) {
+            logString += (speeds[k] != 0 ? '@' : '.') + ' ';
         }
         var fillPercent = (currentVolume / volume) * 100;
         fillPercent = fillPercent.toFixed(2) + ' %';
