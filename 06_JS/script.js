@@ -147,8 +147,6 @@ var Tank2 = function (volume, speed) {
         else {
             currentVolume = Math.max(0, currentVolume + volumePerSec);
         }
-
-
     };
 
     var buildLogString = function () {
