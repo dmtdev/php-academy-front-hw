@@ -45,7 +45,10 @@ var Tank = function (volume, inSpeed) {
     };
 
     var calcCurrentVolume = function () {
-        var volumePerSec = speeds.inSpeed + speeds.outSpeed1 + speeds.outSpeed2;
+        var volumePerSec = 0;
+        for (var k in speeds) {
+            volumePerSec += speeds[k];
+        }
         if (volumePerSec > 0) {
             currentVolume = Math.min(volume, currentVolume + volumePerSec);
         }
