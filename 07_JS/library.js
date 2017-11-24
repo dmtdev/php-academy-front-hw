@@ -1,17 +1,23 @@
 Array.prototype.even = function (f) {
-    var arr = this;
-    for (var i = 0; i < arr.length; i++) {
+    var arr = [];
+    for (var i = 0; i < this.length; i++) {
         if (i % 2 == 0) {
-            arr[i] = f(arr[i]);
+            arr[i] = f(this[i]);
+        }
+        else{
+            arr[i] = this[i];
         }
     }
     return arr;
 };
 Array.prototype.odd = function (f) {
-    var arr = this;
-    for (var i = 0; i < arr.length; i++) {
+    var arr = [];
+    for (var i = 0; i < this.length; i++) {
         if (i % 2 != 0) {
-            arr[i] = f(arr[i]);
+            arr[i] = f(this[i]);
+        }
+        else{
+            arr[i] = this[i];
         }
     }
     return arr;

@@ -11,14 +11,16 @@
 <script>
     var arr = [1, 2, 3, 4, 5, 6, 7, 8, 8];
     console.log(arr);
-    arr.even(function (a) {
+    var arrEvenTest = arr.even(function (a) {
         return ++a;
     });
-    console.log(arr);
-    arr.odd(function (a) {
+    console.log(arrEvenTest);
+    var arrOddTest =  arr.odd(function (a) {
         return --a;
     });
+    console.log(arrOddTest);
     console.log(arr);
+
     arr.shuffle();
     console.log(arr);
     var str = ' sskj  k  s s s klklk    ss  ';
@@ -35,5 +37,9 @@
     var ch2 = new  Chicken("Mary","female");
     console.log(ch1.getSex());
     console.log(ch2.getSex());
+    ch1.crow();
+    //console.log(ch1.produceEgg());
+    console.log(ch2.produceEgg());
+    //ch2.crow();
 </script>
 </html>

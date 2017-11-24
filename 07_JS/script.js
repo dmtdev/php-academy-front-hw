@@ -34,21 +34,23 @@ Cat.prototype.constructor = Cat;
 //Task 2
 var Chicken = function (name, sex) {
     this.name = name;
-    var sex = sex;
-    if (sex == 'male') {
-        Chicken.prototype.crow = function () {
+    this._sex = sex;
+    if (this._sex == 'male') {
+        this.crow = function () {
             alert("Cock-A-Doodle-Doo!");
         }
     }
     else {
-        Chicken.prototype.produceEgg = function () {
+        this.produceEgg = function () {
             var egg = {type: null};
             return egg;
         };
     }
 };
 Chicken.prototype.getSex = function () {
-    return this.sex;
+    return this._sex;
 };
-
-
+var ch1 = new Chicken('ch1','male');
+var ch2 = new Chicken('ch2','female');
+console.log(ch1.getSex());
+console.log(ch2.getSex());
