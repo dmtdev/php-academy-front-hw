@@ -24,19 +24,18 @@ dashboard.sum = function (a, b) {
         return undefined;
     }
     var result = a + b;
-
-    if ((result * 10) % 10 != 0) {
-        result = +(result.toFixed(1));
-    }
+    result = +(result.toFixed(10));
     return result;
 };
 dashboard.lieRound = function (a) {
     return Math.round(a);
 };
 dashboard.formatDate = function (timestamp) {
-    timestamp = +timestamp;
+    if(timestamp!=0){
+        timestamp = +timestamp;
+    }
     if(typeof timestamp != 'number' || isNaN(timestamp)){
-        timestamp = 0;
+        return 'Error: wrong timestamp';
     }
     var d = new Date(+timestamp);
     return dashboard.leadZero(d.getHours()) + ':' + dashboard.leadZero(d.getMinutes()) + ' at ' + dashboard.leadZero(d.getDate()) + '-' + dashboard.leadZero(d.getMonth() + 1) + '-' + d.getFullYear();

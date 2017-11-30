@@ -28,6 +28,8 @@ var testPack = [
             [[2, 2], 4],
             [[3, 3], 6],
             [[0.1, 0.2], 0.3],
+            [[0.01, 0.02], 0.03],
+            [[0.001, 0.002], 0.003],
             [['1', 1], undefined],
             [['a', 'b'], undefined]
         ]
@@ -41,26 +43,25 @@ var testPack = [
             [[1307354948000], '13:09 at 06-06-2011'],
             [[1396624612000], '18:16 at 04-04-2014'],
             [[1456922409000], '14:40 at 02-03-2016'],
-            [[{}], '02:00 at 01-01-1970'],
-            [[[]], '02:00 at 01-01-1970'],
+            [[{}], 'Error: wrong timestamp'],
+            [[[]], 'Error: wrong timestamp'],
             [['1307354948000'], '13:09 at 06-06-2011'],
-            [['abcd'], '02:00 at 01-01-1970']
+            [['abcd'], 'Error: wrong timestamp']
         ]
     },
     {
         name: "formatDateAgo",
         func: dashboard.formatDateAgo,
-        mock: 'Math.round = function(a) { return a.toFixed(0)};',
+        mock: 'Date.prototype.valueOf = function () { return Date.now() - a; }; Date.prototype.getTime = function () {return Date.now()-a;};',
         tests: [
             [[{}], 'Error: wrong timestamp'],
             [[[]], 'Error: wrong timestamp'],
-            [['1307354948000'], '337 weeks ago'],
             [['222abcd'], 'Error: wrong timestamp'],
-            [[(new Date()) - (17 * 24 * 3600 * 1050)], "3 weeks ago"],
-            [[(new Date()) - (2 * 24 * 3600 * 1050)], "2 days ago"],
-            [[(new Date()) - (3 * 3600 * 1050)], "3 hours ago"],
-            [[(new Date()) - (600 * 1000)], "10 minutes ago"],
-            [[(new Date()) - (18000)], "18 seconds ago"]
+            [[(17 * 24 * 3600 * 1050)], "3 weeks ago"],
+            [[(2 * 24 * 3600 * 1050)], "2 days ago"],
+            [[(3 * 3600 * 1050)], "3 hours ago"],
+            [[(600 * 1000)], "10 minutes ago"],
+            [[(18000)], "18 seconds ago"]
         ]
     }
 ];
