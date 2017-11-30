@@ -52,7 +52,7 @@ var testPack = [
     {
         name: "formatDateAgo",
         func: dashboard.formatDateAgo,
-        mock: 'Date.prototype.valueOf = function () { return Date.now() }; Date.getTime = function () {return Date.now();};',
+        mock: 'Date.prototype.valueOf = function () { alert(args); return Date.now() + args; };',
         tests: [
             [[{}], 'Error: wrong timestamp'],
             [[[]], 'Error: wrong timestamp'],
