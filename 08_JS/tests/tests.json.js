@@ -2,7 +2,7 @@ var testPack = [
     {
         name: "lieRound",
         func: dashboard.lieRound,
-        mock: 'Math.oldRound = Math.round; Math.round = function(a) { return a+1};',
+        mock: 'Math.oldRound = Math.round; Math.round = function(a) { Math.round = Math.oldRound; return a+1};',
         tests: [
             [[1], 2],
             [[3.6], 4.6],
