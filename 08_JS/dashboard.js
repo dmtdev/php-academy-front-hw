@@ -48,12 +48,13 @@ dashboard.formatDateAgo = function (timestamp) {
     var result = '';
     var currentDate = +(new Date());
     var delta = (currentDate - timestamp) / 1000;
+    //alert(delta);
     var timelines = {
         weeks: 7 * 24 * 60 * 60,
         days: 24 * 60 * 60,
         hours: 60 * 60,
         minutes: 60,
-        seconds: 1 //fix: if 0 - timePassed == Infinity
+        seconds: 1
     };
     var foundTimeline;
     for (var i in timelines) {

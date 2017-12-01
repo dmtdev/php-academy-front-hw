@@ -2,7 +2,7 @@ var testPack = [
     {
         name: "lieRound",
         func: dashboard.lieRound,
-        mock: 'Math.round = function(a) { return a+1};',
+        mock: 'Math.oldRound = Math.round; Math.round = function(a) { return a+1};',
         tests: [
             [[1], 2],
             [[3.6], 4.6],
@@ -52,7 +52,13 @@ var testPack = [
     {
         name: "formatDateAgo",
         func: dashboard.formatDateAgo,
-        mock: 'Date.prototype.valueOf = function () { alert(args); return Date.now() + args; };',
+        mock: 'Date.prototype.valueOf = function () {\n' +
+        '            Date.prototype.valueOf = function () {\n' +
+        '                return args * 2;\n' +
+        '            };\n' +
+        '            var dt = new Date();\n' +
+        '            return dt.valueOf.call(null, args);\n' +
+        '        };',
         tests: [
             [[{}], 'Error: wrong timestamp'],
             [[[]], 'Error: wrong timestamp'],
